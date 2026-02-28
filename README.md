@@ -40,15 +40,36 @@ El impacto principal del ataque es la capacidad de acceder a VLANs restringidas 
 
 ## 🖼️ Capturas de Pantalla
 
-Las capturas incluidas en este repositorio documentan el proceso completo del laboratorio:
+- **Topología de red del escenario**
 
-#Topología de red del escenario 
-#Ejecución del script DTP Spoofing 
-#Tráfico DTP interceptado en Wireshark 
-#Puerto del switch cambiando a modo Trunk 
-#Acceso al tráfico de múltiples VLANs 
+<img width="1797" height="850" alt="image" src="https://github.com/user-attachments/assets/cc9475ac-b70c-4cad-ab15-2997582f04e8" />
 
-> 📌 *Agregar capturas de pantalla del laboratorio en esta sección*
+---
+- **Antes del ataque**
+
+  <img width="1124" height="511" alt="image" src="https://github.com/user-attachments/assets/a21aa123-c05f-44f4-be86-c574da8a2f15" />
+
+
+---
+
+- **Ejecución del ataque**
+
+  <img width="1369" height="887" alt="image" src="https://github.com/user-attachments/assets/35a5a909-782d-4665-877b-3397dfe72ecc" />
+
+
+ 
+---
+- **Puerto trunk**
+
+<img width="1212" height="640" alt="image" src="https://github.com/user-attachments/assets/24f8e7c6-d0c7-4209-bfd6-318d455a59f0" />
+
+
+---
+
+- **Vlans visibles**
+
+<img width="1200" height="863" alt="image" src="https://github.com/user-attachments/assets/5bfc7000-ffbf-40a8-a118-a5e38cd9f684" />
+
 
 ---
 
@@ -74,7 +95,7 @@ Las capturas incluidas en este repositorio documentan el proceso completo del la
 
 | Interfaz | Dirección IP | Máscara | Descripción |
 |----------|-------------|---------|-------------|
-| eth0 | 15.0.7.50 | /24 | Interfaz principal de ataque |
+| eth0 | 15.0.7.2 | /24 | Interfaz principal de ataque |
 | eth1 | — | — | Conexión a Cloud (opcional) |
 
 #### R-SD (Router)
@@ -195,10 +216,10 @@ git clone https://github.com/j4vi404/DTP-Spoofing-Attack.git
 cd DTP-Spoofing-Attack
 
 # Dar permisos de ejecución
-chmod +x dtp_attack.py
+chmod +x dtp.py
 
 # Ejecutar con privilegios root
-sudo python3 dtp_attack.py
+sudo python3 dtp.py
 ```
 
 ### Características del Script
@@ -314,28 +335,6 @@ SW-1(config)# ip arp inspection validate src-mac dst-mac ip
 SW-1(config)# interface Ethernet1/0
 SW-1(config-if)# ip arp inspection trust
 ```
-
-#### 6. Autenticación 802.1X
-Control de acceso a nivel de puerto antes de permitir cualquier tráfico.
-
-```bash
-! Habilitar AAA
-SW-1(config)# aaa new-model
-SW-1(config)# aaa authentication dot1x default group radius
-
-! Configurar servidor RADIUS
-SW-1(config)# radius server RADIUS-SERVER
-SW-1(config-radius-server)# address ipv4 192.168.1.10 auth-port 1812
-SW-1(config-radius-server)# key cisco
-
-! Aplicar 802.1X en puertos de acceso
-SW-1(config)# interface range Ethernet0/1 - 5
-SW-1(config-if-range)# authentication port-control auto
-SW-1(config-if-range)# dot1x pae authenticator
-```
-
----
-
 ### Monitoreo y Detección
 
 | Herramienta | Propósito | Implementación |
