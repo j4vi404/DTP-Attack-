@@ -77,7 +77,7 @@ Las capturas incluidas en este repositorio documentan el proceso completo del la
 | eth0 | 15.0.7.50 | /24 | Interfaz principal de ataque |
 | eth1 | — | — | Conexión a Cloud (opcional) |
 
-#### R-SD (Router con DHCP Legítimo)
+#### R-SD (Router)
 
 | Interfaz | Dirección IP | Máscara | Descripción |
 |----------|-------------|---------|-------------|
@@ -85,7 +85,7 @@ Las capturas incluidas en este repositorio documentan el proceso completo del la
 | e0/1 | — | — | Conexión SW-Cloud |
 | e1/0 | — | — | Conexión SW-3 |
 
-#### SW-1 (ARISTA - Switch Principal)
+#### SW-1 (ARISTA - Switch )
 
 | Interface | Tipo | Modo | Descripción |
 |-----------|------|------|-------------|
@@ -326,7 +326,7 @@ SW-1(config)# aaa authentication dot1x default group radius
 ! Configurar servidor RADIUS
 SW-1(config)# radius server RADIUS-SERVER
 SW-1(config-radius-server)# address ipv4 192.168.1.10 auth-port 1812
-SW-1(config-radius-server)# key SecureKey123
+SW-1(config-radius-server)# key cisco
 
 ! Aplicar 802.1X en puertos de acceso
 SW-1(config)# interface range Ethernet0/1 - 5
@@ -394,3 +394,7 @@ FASE 5: LECCIONES APRENDIDAS
 ---
 
 *Última actualización: Febrero 2026*
+
+
+                                                           *ALEXIS JAVIER CRUZ MINYETE*
+                                                             ESTUDIANTES DE JONATHAN
